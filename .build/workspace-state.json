@@ -1,0 +1,27 @@
+{
+  "object" : {
+    "artifacts" : [
+
+    ],
+    "dependencies" : [
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "lottie-ios",
+          "kind" : "remoteSourceControl",
+          "location" : "https://github.com/airbnb/lottie-ios.git",
+          "name" : "Lottie"
+        },
+        "state" : {
+          "checkoutState" : {
+            "revision" : "b4bd0604ded9574807f41b4004b57dd1226a30a4",
+            "version" : "3.5.0"
+          },
+          "name" : "sourceControlCheckout"
+        },
+        "subpath" : "lottie-ios"
+      }
+    ]
+  },
+  "version" : 6
+}
