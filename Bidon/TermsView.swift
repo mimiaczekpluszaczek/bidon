@@ -1,5 +1,38 @@
 import SwiftUI
 
+import Foundation
+
+struct Term: Identifiable, Codable {
+    let id: UUID
+    var text: String
+
+    init(id: UUID = UUID(), text: String) {
+        self.id = id
+        self.text = text
+    }
+}
+// Rozszerzenie UserDefaults do przechowywania i ładowania Termów
+extension UserDefaults {
+    
+    private enum Keys {
+        static let termsKey = "terms"
+    }
+    
+    func saveTerms(_ terms: [Term]) {
+        if let encoded = try? JSONEncoder().encode(terms) {
+            set(encoded, forKey: Keys.termsKey)
+        }
+    }
+    
+    func loadTerms() -> [Term]? {
+        if let savedTerms = data(forKey: Keys.termsKey) {
+            if let decodedTerms = try? JSONDecoder().decode([Term].self, from: savedTerms) {
+                return decodedTerms
+            }
+        }
+        return nil
+    }
+}
 struct TermsView: View {
     @State private var terms: [Term] = UserDefaults.standard.loadTerms() ?? [
         Term(text: "Warunek 1"),

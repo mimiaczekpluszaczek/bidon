@@ -1,0 +1,6 @@
+framework module Pods_BidonTests {
+  umbrella header "Pods-BidonTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

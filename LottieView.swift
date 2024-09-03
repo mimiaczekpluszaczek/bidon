@@ -5,10 +5,10 @@ struct LottieView: UIViewRepresentable {
     var filename: String
 
     func makeUIView(context: Context) -> some UIView {
-        let view = AnimationView(name: filename)
-        view.loopMode = .loop
-        view.play()
-        return view
+        let animationView = AnimationView(name: filename)
+        animationView.loopMode = .loop // Poprawna składnia dla ustawienia pętli
+        animationView.play()
+        return animationView
     }
 
     func updateUIView(_ uiView: UIViewType, context: Context) {}
