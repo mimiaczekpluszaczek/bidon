@@ -2,16 +2,16 @@ import SwiftUI
 
 struct CountdownView: View {
     @State private var now = Date()
-    private let newYear = Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
+    private let newYear = Calendar.current.date(from: DateComponents(year: 2024, month: 11, day: 8))!
 
     var body: some View {
         VStack {
-            Text("Odliczanie do Sylwestra")
+            Text("Odliczanie do tajemniczego wydarzenia")
                 .font(.largeTitle)
                 .padding()
 
             Text(timeRemaining)
-                .font(.system(size: 48, weight: .bold, design: .rounded))
+                .font(.system(size: 40, weight: .bold, design: .rounded))
                 .padding()
 
             Spacer()

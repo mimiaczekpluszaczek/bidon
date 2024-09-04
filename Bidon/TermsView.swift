@@ -1,161 +1,157 @@
 import SwiftUI
 
-import Foundation
-
 struct Term: Identifiable, Codable {
-    let id: UUID
+    var id = UUID()
     var text: String
+}
 
-    init(id: UUID = UUID(), text: String) {
-        self.id = id
-        self.text = text
-    }
-}
-// Rozszerzenie UserDefaults do przechowywania i ładowania Termów
-extension UserDefaults {
-    
-    private enum Keys {
-        static let termsKey = "terms"
-    }
-    
-    func saveTerms(_ terms: [Term]) {
-        if let encoded = try? JSONEncoder().encode(terms) {
-            set(encoded, forKey: Keys.termsKey)
-        }
-    }
-    
-    func loadTerms() -> [Term]? {
-        if let savedTerms = data(forKey: Keys.termsKey) {
-            if let decodedTerms = try? JSONDecoder().decode([Term].self, from: savedTerms) {
-                return decodedTerms
-            }
-        }
-        return nil
-    }
-}
+
 struct TermsView: View {
-    @State private var terms: [Term] = UserDefaults.standard.loadTerms() ?? [
-        Term(text: "Warunek 1"),
-        Term(text: "Warunek 2"),
-        Term(text: "Warunek 3"),
-        Term(text: "Warunek 4"),
-        Term(text: "Warunek 5"),
-        Term(text: "Warunek 6"),
-        Term(text: "Warunek 7"),
-        Term(text: "Warunek 8"),
-        Term(text: "Warunek 9"),
-        Term(text: "Warunek 10")
-    ]
-    @State private var selectedTerm: Term?
-    @State private var isEditing = false
+    @Binding var hasAcceptedTerms: Bool
+    @Binding var acceptedByOla: Bool
+    @Binding var acceptedByMichal: Bool
     
-    @State private var olaAgreed = false
-    @State private var michalAgreed = false
-    @State private var showAgreementAlert = false
+    @State private var terms: [Term] = []
+    @State private var showConfirmationAlert = false
     @State private var showCelebration = false
-    @State private var selectedName: String?
-    @State private var responseOla: String?
-    @State private var responseMichal: String?
-    
-    @Binding var showCountdown: Bool
-    @Binding var showGallery: Bool
+    @State private var currentUser = ""
+    @State private var selectedTerm: Term?
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack {
             Text("Regulamin")
                 .font(.largeTitle)
-                .padding(.bottom)
+                .padding()
+
+            // Ikonka plusa nad listą warunków
+            HStack {
+                Spacer()
+                Button(action: {
+                    addNewTerm()
+                }) {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.system(size: 24))
+                        .foregroundColor(.blue)
+                }
+                .padding(.trailing, 20)
+            }
+            .padding(.bottom, 10)
 
             List {
                 ForEach(terms) { term in
-                    HStack {
-                        Text(term.text)
-                        Spacer()
-                        Button(action: {
-                            selectedTerm = term
-                            isEditing = true
-                        }) {
+                    Button(action: {
+                        selectedTerm = term
+                    }) {
+                        HStack {
+                            Text(term.text)
+                            Spacer()
                             Image(systemName: "pencil")
-                                .foregroundColor(.blue)
                         }
                     }
                 }
+                .onDelete(perform: deleteTerm)
             }
-            .frame(height: 300)
-
-            Spacer()
 
             HStack {
                 Button(action: {
-                    selectedName = "Ola"
-                    showAgreementAlert = true
+                    currentUser = "Ola"
+                    showConfirmationAlert = true
                 }) {
                     Text("Ola")
                         .padding()
-                        .background(responseOla == "Tak" ? Color.pink : Color.gray)
+                        .frame(maxWidth: .infinity)
+                        .background(acceptedByOla ? Color.pink : Color.gray)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
-                .alert(isPresented: $showAgreementAlert) {
-                    Alert(
-                        title: Text("Czy zgadzasz się na powyższe warunki?"),
-                        primaryButton: .default(Text("Tak")) {
-                            if selectedName == "Ola" {
-                                responseOla = "Tak"
-                                olaAgreed = true
-                            } else if selectedName == "Michał" {
-                                responseMichal = "Tak"
-                                michalAgreed = true
-                            }
-                            checkAgreements()
-                        },
-                        secondaryButton: .destructive(Text("Nie")) {
-                            if selectedName == "Ola" {
-                                responseOla = "Nie"
-                            } else if selectedName == "Michał" {
-                                responseMichal = "Nie"
-                            }
-                        }
-                    )
-                }
 
                 Button(action: {
-                    selectedName = "Michał"
-                    showAgreementAlert = true
+                    currentUser = "Michal"
+                    showConfirmationAlert = true
                 }) {
                     Text("Michał")
                         .padding()
-                        .background(responseMichal == "Tak" ? Color.blue : Color.gray)
+                        .frame(maxWidth: .infinity)
+                        .background(acceptedByMichal ? Color.blue : Color.gray)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
             }
             .padding()
+            .alert(isPresented: $showConfirmationAlert) {
+                let isAccepting = (currentUser == "Ola" && !acceptedByOla) || (currentUser == "Michal" && !acceptedByMichal)
+                
+                return Alert(
+                    title: Text("Potwierdzenie"),
+                    message: Text(isAccepting ? "Czy na pewno chcesz zaakceptować warunki?" : "Czy na pewno chcesz cofnąć zgodę?"),
+                    primaryButton: .default(Text(isAccepting ? "Tak" : "Nie")) {
+                        if currentUser == "Ola" {
+                            acceptedByOla.toggle()
+                        } else if currentUser == "Michal" {
+                            acceptedByMichal.toggle()
+                        }
+                        updateAcceptance()
+                    },
+                    secondaryButton: .cancel(Text("Anuluj"))
+                )
+            }
         }
         .padding()
-        .navigationBarTitle("Regulamin", displayMode: .inline)
-        .sheet(isPresented: $isEditing, onDismiss: saveTerms) {
-            if let selectedTerm = selectedTerm {
-                EditTermView(term: $terms[terms.firstIndex(where: { $0.id == selectedTerm.id })!])
+        .onAppear {
+            loadTerms()
+            UserDefaults.standard.set(acceptedByOla, forKey: "acceptedByOla")
+            UserDefaults.standard.set(acceptedByMichal, forKey: "acceptedByMichal")
+        }
+        .fullScreenCover(item: $selectedTerm) { term in
+            if let index = terms.firstIndex(where: { $0.id == term.id }) {
+                EditTermView(term: $terms[index], terms: $terms)
             }
         }
-        .fullScreenCover(isPresented: $showCelebration, content: {
+        .fullScreenCover(isPresented: $showCelebration) {
             CelebrationView()
-        })
-    }
-
-    func checkAgreements() {
-        if olaAgreed && michalAgreed {
-            showCelebration = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                showCountdown = true
-                showGallery = true
-                showCelebration = false
-            }
         }
     }
 
-    func saveTerms() {
-        UserDefaults.standard.saveTerms(terms)
+    // Funkcja dodająca nowy warunek
+    private func addNewTerm() {
+        let newTerm = Term(text: "")
+        terms.append(newTerm)
+        selectedTerm = newTerm
+        saveTerms()
+    }
+
+    // Funkcja usuwająca warunek
+    private func deleteTerm(at offsets: IndexSet) {
+        terms.remove(atOffsets: offsets)
+        saveTerms()
+    }
+
+    // Funkcja zapisująca warunki do UserDefaults
+    private func saveTerms() {
+        if let encoded = try? JSONEncoder().encode(terms) {
+            UserDefaults.standard.set(encoded, forKey: "terms")
+        }
+    }
+
+    // Funkcja ładująca warunki z UserDefaults
+    private func loadTerms() {
+        if let savedTerms = UserDefaults.standard.data(forKey: "terms"),
+           let decodedTerms = try? JSONDecoder().decode([Term].self, from: savedTerms) {
+            terms = decodedTerms
+        }
+    }
+
+    private func updateAcceptance() {
+        UserDefaults.standard.set(acceptedByOla, forKey: "acceptedByOla")
+        UserDefaults.standard.set(acceptedByMichal, forKey: "acceptedByMichal")
+        
+        // Sprawdź, czy obie osoby wyraziły zgodę
+        hasAcceptedTerms = acceptedByOla && acceptedByMichal
+        UserDefaults.standard.set(hasAcceptedTerms, forKey: "hasAcceptedTerms")
+        
+        // Wyświetl CelebrationView, jeśli warunki są zaakceptowane przez obie osoby
+        if hasAcceptedTerms {
+            showCelebration = true
+        }
     }
 }

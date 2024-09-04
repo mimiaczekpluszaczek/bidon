@@ -4,29 +4,29 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-Bidon-BidonUITests.xcscheme</key>
+		<key>bidon-1-Package.xcscheme_^#shared#^_</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
-		<key>Pods-Bidon.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>Pods-BidonTests.xcscheme</key>
+		<key>bidon-Package.xcscheme_^#shared#^_</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>bidon</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>bidon-1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>

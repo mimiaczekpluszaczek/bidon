@@ -16,14 +16,14 @@
 		9047E6552C87A45A00118170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9047E64C2C87A45A00118170 /* Assets.xcassets */; };
 		9047E6562C87A45A00118170 /* BidonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047E64D2C87A45A00118170 /* BidonApp.swift */; };
 		9047E6572C87A45A00118170 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9047E64E2C87A45A00118170 /* Preview Assets.xcassets */; };
-		9047E6592C87A47200118170 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047E6582C87A47100118170 /* LottieView.swift */; };
-		9047E65C2C87A4F800118170 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9047E65B2C87A4F800118170 /* Lottie */; };
 		9047E65E2C87A5D400118170 /* EditTermView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047E65D2C87A5D400118170 /* EditTermView.swift */; };
 		9047E6602C87A6A100118170 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 9047E65F2C87A6A100118170 /* Podfile */; };
 		9047E6622C87A72100118170 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9047E6612C87A72100118170 /* Lottie */; };
 		9088AF992C7BD58C00303C41 /* BidonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9088AF982C7BD58C00303C41 /* BidonTests.swift */; };
 		9088AFA32C7BD58C00303C41 /* BidonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9088AFA22C7BD58C00303C41 /* BidonUITests.swift */; };
 		9088AFA52C7BD58C00303C41 /* BidonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9088AFA42C7BD58C00303C41 /* BidonUITestsLaunchTests.swift */; };
+		90E896952C87ACC50037572E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 90E896942C87ACC50037572E /* Lottie */; };
+		90E896972C87AF0A0037572E /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E896962C87AF0A0037572E /* ConfettiView.swift */; };
 		B2991CDC2DC3D63758F0E634 /* Pods_Bidon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D09844FB33F19960AA053942 /* Pods_Bidon.framework */; };
 		E0AAA63B2D2D808DB2685D40 /* Pods_BidonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CD8ADA7C370B5B95EC64E1 /* Pods_BidonTests.framework */; };
 /* End PBXBuildFile section */
@@ -61,7 +61,6 @@
 		9047E64C2C87A45A00118170 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9047E64D2C87A45A00118170 /* BidonApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BidonApp.swift; sourceTree = "<group>"; };
 		9047E64E2C87A45A00118170 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		9047E6582C87A47100118170 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = SOURCE_ROOT; };
 		9047E65D2C87A5D400118170 /* EditTermView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTermView.swift; sourceTree = "<group>"; };
 		9047E65F2C87A6A100118170 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9088AF842C7BD58900303C41 /* Bidon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bidon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +69,7 @@
 		9088AF9E2C7BD58C00303C41 /* BidonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BidonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9088AFA22C7BD58C00303C41 /* BidonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidonUITests.swift; sourceTree = "<group>"; };
 		9088AFA42C7BD58C00303C41 /* BidonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidonUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		90E896962C87AF0A0037572E /* ConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		A9FB53E2B16CCE055095C4B2 /* Pods_Bidon_BidonUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bidon_BidonUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D09844FB33F19960AA053942 /* Pods_Bidon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bidon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3221B0AFD0B308BEB638F03 /* Pods-Bidon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bidon.release.xcconfig"; path = "Target Support Files/Pods-Bidon/Pods-Bidon.release.xcconfig"; sourceTree = "<group>"; };
@@ -80,7 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9047E65C2C87A4F800118170 /* Lottie in Frameworks */,
 				B2991CDC2DC3D63758F0E634 /* Pods_Bidon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +98,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55B24F6A110D817D07F596BE /* Pods_Bidon_BidonUITests.framework in Frameworks */,
+				90E896952C87ACC50037572E /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,9 +162,9 @@
 		9088AF862C7BD58900303C41 /* Bidon */ = {
 			isa = PBXGroup;
 			children = (
+				90E896962C87AF0A0037572E /* ConfettiView.swift */,
 				9047E64C2C87A45A00118170 /* Assets.xcassets */,
 				9047E64D2C87A45A00118170 /* BidonApp.swift */,
-				9047E6582C87A47100118170 /* LottieView.swift */,
 				9047E6482C87A45A00118170 /* CelebrationView.swift */,
 				9047E6492C87A45A00118170 /* ContentView.swift */,
 				9047E64A2C87A45A00118170 /* CountdownView.swift */,
@@ -205,7 +205,6 @@
 				9088AF802C7BD58900303C41 /* Sources */,
 				9088AF812C7BD58900303C41 /* Frameworks */,
 				9088AF822C7BD58900303C41 /* Resources */,
-				123847A243AED37A2528C941 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -213,7 +212,6 @@
 			);
 			name = Bidon;
 			packageProductDependencies = (
-				9047E65B2C87A4F800118170 /* Lottie */,
 			);
 			productName = Bidon;
 			productReference = 9088AF842C7BD58900303C41 /* Bidon.app */;
@@ -249,7 +247,6 @@
 				9088AF9A2C7BD58C00303C41 /* Sources */,
 				9088AF9B2C7BD58C00303C41 /* Frameworks */,
 				9088AF9C2C7BD58C00303C41 /* Resources */,
-				C509F245EDEBB9342125C696 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -257,6 +254,9 @@
 				9088AFA02C7BD58C00303C41 /* PBXTargetDependency */,
 			);
 			name = BidonUITests;
+			packageProductDependencies = (
+				90E896942C87ACC50037572E /* Lottie */,
+			);
 			productName = BidonUITests;
 			productReference = 9088AF9E2C7BD58C00303C41 /* BidonUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -336,23 +336,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		123847A243AED37A2528C941 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Bidon/Pods-Bidon-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Bidon/Pods-Bidon-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bidon/Pods-Bidon-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		31A24B20C7EE246E05E1BB99 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -397,23 +380,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C509F245EDEBB9342125C696 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Bidon-BidonUITests/Pods-Bidon-BidonUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Bidon-BidonUITests/Pods-Bidon-BidonUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bidon-BidonUITests/Pods-Bidon-BidonUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D3C29F1E5C6AE92D79B62121 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -447,9 +413,9 @@
 				9047E6512C87A45A00118170 /* CelebrationView.swift in Sources */,
 				9047E6562C87A45A00118170 /* BidonApp.swift in Sources */,
 				9047E6542C87A45A00118170 /* PhotoGalleryView.swift in Sources */,
-				9047E6592C87A47200118170 /* LottieView.swift in Sources */,
 				9047E6532C87A45A00118170 /* CountdownView.swift in Sources */,
 				9047E65E2C87A5D400118170 /* EditTermView.swift in Sources */,
+				90E896972C87AF0A0037572E /* ConfettiView.swift in Sources */,
 				9047E6522C87A45A00118170 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -804,12 +770,12 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9047E65B2C87A4F800118170 /* Lottie */ = {
+		9047E6612C87A72100118170 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9047E65A2C87A4AC00118170 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
-		9047E6612C87A72100118170 /* Lottie */ = {
+		90E896942C87ACC50037572E /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9047E65A2C87A4AC00118170 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
