@@ -19,6 +19,7 @@ struct ContentView: View {
                         .font(.title2)
                         .padding()
 
+                    // Moduł Odliczanie
                     NavigationLink(destination: CountdownView()) {
                         Text("Odliczanie")
                             .padding()
@@ -29,7 +30,8 @@ struct ContentView: View {
                             .padding(.horizontal)
                     }
 
-                    NavigationLink(destination: PhotoGalleryView()) {
+                    // Moduł Historia
+                    NavigationLink(destination: HistoryView()) {
                         Text("Historia")
                             .padding()
                             .frame(maxWidth: .infinity)
@@ -44,6 +46,7 @@ struct ContentView: View {
                         .padding()
                 }
 
+                // Przycisk przejścia do regulaminu
                 NavigationLink(destination: TermsView(hasAcceptedTerms: $hasAcceptedTerms, acceptedByOla: $acceptedByOla, acceptedByMichal: $acceptedByMichal)) {
                     Text("Przejdź do regulaminu")
                         .padding()
@@ -55,6 +58,12 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Główne menu")
+        }
+        .onAppear {
+            // Aktualizacja stanu przy załadowaniu widoku
+            hasAcceptedTerms = UserDefaults.standard.bool(forKey: "hasAcceptedTerms")
+            acceptedByOla = UserDefaults.standard.bool(forKey: "acceptedByOla")
+            acceptedByMichal = UserDefaults.standard.bool(forKey: "acceptedByMichal")
         }
     }
 }

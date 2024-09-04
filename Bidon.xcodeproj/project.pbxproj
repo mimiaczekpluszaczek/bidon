@@ -24,6 +24,10 @@
 		9088AFA52C7BD58C00303C41 /* BidonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9088AFA42C7BD58C00303C41 /* BidonUITestsLaunchTests.swift */; };
 		90E896952C87ACC50037572E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 90E896942C87ACC50037572E /* Lottie */; };
 		90E896972C87AF0A0037572E /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E896962C87AF0A0037572E /* ConfettiView.swift */; };
+		90E896992C88E4DA0037572E /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E896982C88E4DA0037572E /* Album.swift */; };
+		90E8969B2C88E4E50037572E /* EditAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E8969A2C88E4E50037572E /* EditAlbumView.swift */; };
+		90E8969D2C88E4ED0037572E /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E8969C2C88E4ED0037572E /* HistoryView.swift */; };
+		90E8969F2C88EC6D0037572E /* FullScreenPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E8969E2C88EC6C0037572E /* FullScreenPhotoView.swift */; };
 		B2991CDC2DC3D63758F0E634 /* Pods_Bidon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D09844FB33F19960AA053942 /* Pods_Bidon.framework */; };
 		E0AAA63B2D2D808DB2685D40 /* Pods_BidonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CD8ADA7C370B5B95EC64E1 /* Pods_BidonTests.framework */; };
 /* End PBXBuildFile section */
@@ -70,6 +74,10 @@
 		9088AFA22C7BD58C00303C41 /* BidonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidonUITests.swift; sourceTree = "<group>"; };
 		9088AFA42C7BD58C00303C41 /* BidonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidonUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		90E896962C87AF0A0037572E /* ConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
+		90E896982C88E4DA0037572E /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		90E8969A2C88E4E50037572E /* EditAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAlbumView.swift; sourceTree = "<group>"; };
+		90E8969C2C88E4ED0037572E /* HistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		90E8969E2C88EC6C0037572E /* FullScreenPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenPhotoView.swift; sourceTree = "<group>"; };
 		A9FB53E2B16CCE055095C4B2 /* Pods_Bidon_BidonUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bidon_BidonUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D09844FB33F19960AA053942 /* Pods_Bidon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bidon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3221B0AFD0B308BEB638F03 /* Pods-Bidon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bidon.release.xcconfig"; path = "Target Support Files/Pods-Bidon/Pods-Bidon.release.xcconfig"; sourceTree = "<group>"; };
@@ -164,12 +172,16 @@
 			children = (
 				90E896962C87AF0A0037572E /* ConfettiView.swift */,
 				9047E64C2C87A45A00118170 /* Assets.xcassets */,
+				90E896982C88E4DA0037572E /* Album.swift */,
 				9047E64D2C87A45A00118170 /* BidonApp.swift */,
 				9047E6482C87A45A00118170 /* CelebrationView.swift */,
 				9047E6492C87A45A00118170 /* ContentView.swift */,
 				9047E64A2C87A45A00118170 /* CountdownView.swift */,
 				9047E64B2C87A45A00118170 /* PhotoGalleryView.swift */,
+				90E8969C2C88E4ED0037572E /* HistoryView.swift */,
 				9047E65D2C87A5D400118170 /* EditTermView.swift */,
+				90E8969E2C88EC6C0037572E /* FullScreenPhotoView.swift */,
+				90E8969A2C88E4E50037572E /* EditAlbumView.swift */,
 				9047E64F2C87A45A00118170 /* Preview Content */,
 				9047E6472C87A45A00118170 /* TermsView.swift */,
 				9047E6462C87A45A00118170 /* Bidon-Bridging-Header.h */,
@@ -411,9 +423,13 @@
 			files = (
 				9047E6502C87A45A00118170 /* TermsView.swift in Sources */,
 				9047E6512C87A45A00118170 /* CelebrationView.swift in Sources */,
+				90E8969B2C88E4E50037572E /* EditAlbumView.swift in Sources */,
 				9047E6562C87A45A00118170 /* BidonApp.swift in Sources */,
+				90E8969F2C88EC6D0037572E /* FullScreenPhotoView.swift in Sources */,
 				9047E6542C87A45A00118170 /* PhotoGalleryView.swift in Sources */,
+				90E8969D2C88E4ED0037572E /* HistoryView.swift in Sources */,
 				9047E6532C87A45A00118170 /* CountdownView.swift in Sources */,
+				90E896992C88E4DA0037572E /* Album.swift in Sources */,
 				9047E65E2C87A5D400118170 /* EditTermView.swift in Sources */,
 				90E896972C87AF0A0037572E /* ConfettiView.swift in Sources */,
 				9047E6522C87A45A00118170 /* ContentView.swift in Sources */,
