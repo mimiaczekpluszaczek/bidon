@@ -6,6 +6,8 @@ struct EditAlbumView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var selectedPhotos: [PhotosPickerItem] = []
 
+    var onDelete: (() -> Void)? // Callback do usuwania albumu
+
     var body: some View {
         VStack {
             TextField("Nazwa albumu", text: $album.name)
@@ -33,7 +35,7 @@ struct EditAlbumView: View {
                         switch result {
                         case .success(let data):
                             if let data = data {
-                                album.photoData.append(data) // Dodawanie zdjęć
+                                album.photoData.append(data) // Dodajemy zdjęcia do albumu
                             }
                         case .failure(let error):
                             print("Błąd ładowania zdjęcia: \(error.localizedDescription)")
@@ -42,7 +44,7 @@ struct EditAlbumView: View {
                 }
             }
 
-            // Lista zdjęć z możliwością usunięcia
+            // Wyświetlenie dodanych zdjęć
             if !album.photoData.isEmpty {
                 Text("Zdjęcia w albumie")
                     .font(.headline)
@@ -60,7 +62,7 @@ struct EditAlbumView: View {
                                         .cornerRadius(8)
 
                                     Button(action: {
-                                        album.photoData.remove(at: index) // Usunięcie zdjęcia
+                                        album.photoData.remove(at: index) // Usunięcie zdjęcia z albumu
                                     }) {
                                         Text("Usuń")
                                             .foregroundColor(.red)
@@ -73,9 +75,9 @@ struct EditAlbumView: View {
                 .padding(.top)
             }
 
-            // Przycisk zapisania albumu
+            // Przycisk zapisywania zmian
             Button(action: {
-                presentationMode.wrappedValue.dismiss()
+                presentationMode.wrappedValue.dismiss() // Zapisz zmiany i zamknij edycję
             }) {
                 Text("Zapisz album")
                     .padding()
@@ -85,30 +87,23 @@ struct EditAlbumView: View {
             }
             .padding()
 
-            // Przycisk usunięcia albumu
-            Button(action: {
-                deleteAlbum()
-            }) {
-                Text("Usuń album")
-                    .padding()
-                    .background(Color.red)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+            // Przycisk usuwania albumu
+            if let onDelete = onDelete {
+                Button(action: {
+                    onDelete() // Wywołujemy callback do usunięcia albumu
+                    presentationMode.wrappedValue.dismiss() // Zamykanie widoku po usunięciu
+                }) {
+                    Text("Usuń album")
+                        .padding()
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding()
             }
-            .padding()
 
             Spacer()
         }
         .padding()
-    }
-
-    // Funkcja usuwania albumu
-    func deleteAlbum() {
-        if let index = UserDefaults.standard.array(forKey: "albums")?.firstIndex(where: { ($0 as! Album).id == album.id }) {
-            var albums = UserDefaults.standard.array(forKey: "albums") as! [Album]
-            albums.remove(at: index)
-            UserDefaults.standard.set(albums, forKey: "albums")
-        }
-        presentationMode.wrappedValue.dismiss()
     }
 }

@@ -2,28 +2,44 @@ import SwiftUI
 
 struct CountdownView: View {
     @State private var now = Date()
-    private let newYear = Calendar.current.date(from: DateComponents(year: 2024, month: 11, day: 8))!
+    private let eventDate = Calendar.current.date(from: DateComponents(year: 2024, month: 11, day: 8))!
 
     var body: some View {
-        VStack {
-            Text("Odliczanie do tajemniczego wydarzenia")
-                .font(.largeTitle)
-                .padding()
+        ZStack {
+            // Ciemne tło takie jak w menu
+            Color.black
+                .ignoresSafeArea()
 
-            Text(timeRemaining)
-                .font(.system(size: 40, weight: .bold, design: .rounded))
-                .padding()
+            VStack(spacing: 40) {
+                Text("Odliczanie do tajemniczego wydarzenia")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white) // Tekst w białym kolorze dla kontrastu z ciemnym tłem
+                    .multilineTextAlignment(.center)
+                    .padding()
 
-            Spacer()
+                // Licznik z zaokrąglonym tłem
+                Text(timeRemaining)
+                    .font(.system(size: 50, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.gray.opacity(0.3)) // Szare, półprzezroczyste tło licznika
+                    .cornerRadius(15)
+                    .shadow(radius: 10)
+
+                Spacer()
+            }
+            .padding(.horizontal)
         }
         .onAppear(perform: startTimer)
     }
 
     private var timeRemaining: String {
         let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .full
+        formatter.unitsStyle = .positional
         formatter.allowedUnits = [.day, .hour, .minute, .second]
-        return formatter.string(from: now, to: newYear) ?? "Czas upłynął!"
+        formatter.zeroFormattingBehavior = .pad
+        return formatter.string(from: now, to: eventDate) ?? "Czas upłynął!"
     }
 
     private func startTimer() {

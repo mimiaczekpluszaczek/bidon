@@ -1,4 +1,5 @@
 import SwiftUI
+import PhotosUI
 
 struct HistoryView: View {
     @State private var albums: [Album] = []
@@ -18,19 +19,17 @@ struct HistoryView: View {
                     ScrollViewReader { scrollViewProxy in
                         ScrollView {
                             LazyVStack(spacing: 20) {
-                                ForEach(sortedAlbums()) { album in
+                                ForEach(sortedAlbums()) { album in // Sortowanie albumów od najstarszych do najnowszych
                                     VStack(alignment: .leading) {
                                         ZStack {
-                                            // Tło, które pokrywa zarówno tekst jak i fotografie
                                             Color.gray.opacity(0.2)
                                                 .cornerRadius(10)
                                                 .shadow(radius: 5)
 
                                             VStack(alignment: .leading) {
-                                                // Klikalny tylko tekst albumu (nazwa, opis, data)
                                                 VStack(alignment: .leading, spacing: 5) {
                                                     Button(action: {
-                                                        selectedAlbum = album // Przejście do edycji albumu
+                                                        selectedAlbum = album
                                                     }) {
                                                         VStack(alignment: .leading, spacing: 5) {
                                                             Text(album.name)
@@ -41,16 +40,16 @@ struct HistoryView: View {
                                                                 .font(.caption)
                                                         }
                                                     }
-                                                    .padding(.bottom, 10) // Odstęp pod tekstem
+                                                    .padding(.bottom, 10)
                                                 }
 
-                                                // Galeria zdjęć w albumie
+                                                // Wyświetlanie zdjęć
                                                 ScrollView(.horizontal, showsIndicators: false) {
                                                     HStack {
                                                         ForEach(album.photoData, id: \.self) { data in
                                                             if let image = UIImage(data: data) {
                                                                 Button(action: {
-                                                                    selectedImage = IdentifiableImage(image: image) // Otwieramy zdjęcie na pełnym ekranie
+                                                                    selectedImage = IdentifiableImage(image: image)
                                                                 }) {
                                                                     Image(uiImage: image)
                                                                         .resizable()
@@ -63,9 +62,9 @@ struct HistoryView: View {
                                                     }
                                                 }
                                             }
-                                            .padding() // Odstęp wewnątrz ramki albumu
+                                            .padding()
                                         }
-                                        .padding(.horizontal) // Odstęp zewnętrzny
+                                        .padding(.horizontal)
                                     }
                                     .id(album.id)
                                 }
@@ -73,14 +72,20 @@ struct HistoryView: View {
                             .padding(.vertical, 10)
                         }
                         .onAppear {
-                            if let lastAlbum = albums.last {
-                                scrollViewProxy.scrollTo(lastAlbum.id, anchor: .bottom)
+                            if !albums.isEmpty {
+                                // Automatyczne przewinięcie listy na dół
+                                DispatchQueue.main.async {
+                                    if let lastAlbum = albums.last {
+                                        scrollViewProxy.scrollTo(lastAlbum.id, anchor: .bottom)
+                                    }
+                                }
                             }
                         }
                     }
                 }
 
                 Button(action: {
+                    newAlbum = Album(name: "", description: "", date: Date()) // Reset nowego albumu
                     showEditAlbumView = true
                 }) {
                     Text("Stwórz nowy album")
@@ -93,19 +98,23 @@ struct HistoryView: View {
             }
             .navigationBarTitle("Historia", displayMode: .inline)
             .sheet(item: $selectedAlbum) { album in
-                EditAlbumView(album: binding(for: album))
+                EditAlbumView(album: binding(for: album), onDelete: {
+                    deleteAlbum(album)
+                })
+                .onDisappear {
+                    saveAlbums() // Zapisujemy zmiany po edycji albumu
+                }
             }
             .sheet(isPresented: $showEditAlbumView) {
                 EditAlbumView(album: $newAlbum)
                     .onDisappear {
-                        if !newAlbum.name.isEmpty {
+                        // Dodajemy nowy album tylko, jeśli został wypełniony
+                        if !newAlbum.name.isEmpty && !albums.contains(where: { $0.id == newAlbum.id }) {
                             albums.append(newAlbum)
-                            newAlbum = Album(name: "", description: "", date: Date())
-                            saveAlbums()
+                            saveAlbums() // Zapisujemy nowe albumy
                         }
                     }
             }
-            // Wyświetlanie zdjęcia na pełnym ekranie z użyciem IdentifiableImage
             .fullScreenCover(item: $selectedImage) { identifiableImage in
                 FullScreenPhotoView(image: identifiableImage.image)
             }
@@ -120,25 +129,33 @@ struct HistoryView: View {
         return albums.sorted { $0.date < $1.date }
     }
 
-    // Funkcja formatowania daty
+    // Funkcja formatująca datę
     func formattedDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         return formatter.string(from: date)
     }
 
-    // Funkcja zapisująca albumy
+    // Funkcja usuwania albumu
+    private func deleteAlbum(_ album: Album) {
+        if let index = albums.firstIndex(where: { $0.id == album.id }) {
+            albums.remove(at: index)
+            saveAlbums() // Zapisujemy stan po usunięciu albumu
+        }
+    }
+
+    // Funkcja zapisująca albumy do UserDefaults
     private func saveAlbums() {
         if let encoded = try? JSONEncoder().encode(albums) {
             UserDefaults.standard.set(encoded, forKey: "albums")
         }
     }
 
-    // Funkcja ładująca albumy i sortująca je
+    // Funkcja ładująca albumy z UserDefaults
     private func loadAlbums() {
         if let savedAlbums = UserDefaults.standard.data(forKey: "albums"),
            let decodedAlbums = try? JSONDecoder().decode([Album].self, from: savedAlbums) {
-            albums = decodedAlbums.sorted { $0.date < $1.date }
+            albums = decodedAlbums
         }
     }
 
